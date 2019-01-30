@@ -1,5 +1,25 @@
+
 <div class="container-fluid">
-	<div style="color: blue;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">EP-Rent</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/reservations">Lista rezerwacji</a>
+      <a class="nav-item nav-link" routerLink="/reservations/new">Nowa rezerwacja</a>
+      <a class="nav-item nav-link" routerLink="/cars">Auta</a>
+      <a class="nav-item nav-link" routerLink="/customers">Klienci</a>
+    </div>
+  </div>
+</nav>
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>
+
+
+	<!-- <div style="color: blue;">
 		<h1>{{title}}</h1>
 	</div>
  
@@ -21,4 +41,4 @@
 	<div class="col-md-3">
 		<pre *ngFor="let item of items | async">{{item.content}}</pre>
 	</div>
-</div>
+</div> -->
