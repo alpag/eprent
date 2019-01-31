@@ -1,30 +1,25 @@
 <h2>Lista pojazdów</h2>
 
-
-
-<div class="col-md-3">
-  <div *ngFor="let car of cars ">
-    <div class="col">
-      <div class="row">
-        <table class="table">
-          <tr>
-            <th scope="col">Id</th>
-            <td>{{car.id}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Marka</th>
-            <td>{{car.make}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Model</th>
-            <td>{{car.model}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Kolor</th>
-            <td>{{car.color}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+<table class="table" id="car-table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">#</th>
+      <th scope="col">Marka</th>
+      <th scope="col">Model</th>
+      <th scope="col">Kolor</th>
+      <th scope="col">Rok produkcji</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars ">
+      <th><img src="{{car.photoUrl}}"/></th>
+      <th scope="row">{{car.id}}</th>
+      <th scope="row">{{car.make}}</th>
+      <th scope="row">{{car.model}}</th>
+      <th scope="row">{{car.color}}</th>
+      <th scope="row">{{car.production}}</th>
+      
+    </tr>
+  </tbody>
+</table>
