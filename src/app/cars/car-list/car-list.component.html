@@ -1,3 +1,30 @@
-<p>
-  car-list works!
-</p>
+<h2>Lista pojazdów</h2>
+
+
+
+<div class="col-md-3">
+  <div *ngFor="let car of cars ">
+    <div class="col">
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th scope="col">Id</th>
+            <td>{{car.id}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Marka</th>
+            <td>{{car.make}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Model</th>
+            <td>{{car.model}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Kolor</th>
+            <td>{{car.color}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

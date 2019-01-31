@@ -1,3 +1,34 @@
-<p>
-  customer-list works!
-</p>
+<h2>Lista Użytkowników</h2>
+
+
+
+<div class="col-md-3">
+  <div *ngFor="let customer of customers">
+    <div class="col">
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th scope="col">Id</th>
+            <td>{{customer.id}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Imie</th>
+            <td>{{customer.name}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Nazwisko</th>
+            <td>{{customer.lastname}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Enail</th>
+            <td>{{customer.email}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Telefon</th>
+            <td>{{customer.phone}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
