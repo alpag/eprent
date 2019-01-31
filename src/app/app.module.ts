@@ -12,6 +12,10 @@ import { ReservationListComponent } from './reservations/reservation-list/reserv
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { CarListComponent } from './cars/car-list/car-list.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { AddCarComponent } from './cars/add-car/add-car.component';
+import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
+import { HttpClientModule } from '@angular/common/http';
+
  
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
     ReservationListComponent,
     NewReservationComponent,
     CarListComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    AddCarComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +33,7 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AppRoutingModule, // for database
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

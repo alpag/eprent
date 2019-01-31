@@ -1,0 +1,30 @@
+<div style="width: 300px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="item-id">Id</label> <input type="text"
+        class="form-control" placeholder="Id" id="item-id"
+        required [(ngModel)]="customer.id" name="item-id">
+
+      <label for="item-name">Imie</label> <input type="text"
+        class="form-control" placeholder="Imie" id="item-name"
+        required [(ngModel)]="customer.name" name="item-name">
+
+      <label for="item-lastname">Nazwisko</label> <input type="text"
+        class="form-control" placeholder="Nazwisko" id="item-lastname"
+        required [(ngModel)]="customer.lastname" name="item-lastname">
+
+      <label for="item-email">Email</label> <input type="text"
+        class="form-control" placeholder="Email" id="item-email"
+        required [(ngModel)]="customer.email" name="item-email">
+
+      <label for="item-phone">Telefon</label> <input type="text"
+        class="form-control" placeholder="Telefon" id="item-phone"
+        required [(ngModel)]="customer.phone" name="item-phone">
+
+    </div>
+
+    <div class="btn-group">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
