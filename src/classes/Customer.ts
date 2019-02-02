@@ -6,11 +6,15 @@ export class Customer {
     email: String;
     phone: String;
   
-    constructor() {
-        this.id = "";
+    constructor(id) {
+        this.id = id;
         this.name = "";
         this.lastname = "";
         this.email = "";
         this.phone = "";
+    }
+
+    setId (id:String) {
+        this.id = id;
     }
   }

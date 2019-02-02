@@ -4,7 +4,8 @@ export class Car {
     make: String;
     model: String;
     color: String;
-    production: String
+    production: String;
+    photoUrl: String;
   
     constructor() {
         this.id = '';
@@ -12,5 +13,6 @@ export class Car {
         this.model = '';
         this.color = '';
         this.production = '';
+        this.photoUrl = '';
     }
   }

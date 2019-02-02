@@ -1,39 +1,24 @@
 <h2>Lista pojazdów</h2>
+<table class="table" id="car-table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">#</th>
+      <th scope="col">Marka</th>
+      <th scope="col">Model</th>
+      <th scope="col">Kolor</th>
+      <th scope="col">Rok produkcji</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars ">
+      <td><img src="{{car.photoUrl}}"/></td>
+      <td scope="row">{{car.id}}</td>
+      <td scope="row">{{car.make}}</td>
+      <td scope="row">{{car.model}}</td>
+      <td scope="row">{{car.color}}</td>
+      <td scope="row">{{car.production}}</td>
+    </tr>
+  </tbody>
+</table>
 
-
-
-<div class="col-md-3">
-  <div *ngFor="let car of cars ">
-    <div class="col">
-      <div class="row">
-        <table class="table">
-          <tr>
-            <th scope="col">Id</th>
-            <td>{{car.id}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Marka</th>
-            <td>{{car.make}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Model</th>
-            <td>{{car.model}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Kolor</th>
-            <td>{{car.color}}</td>
-          </tr>
-
-          <tr>
-            <th scope="col">edit</th>
-            <td> <a class="nav-item nav-link" [routerLink]="['/cars/edit-car', car.id]">Edit</a> </td>
-          </tr>
-          <tr>
-            <th scope="col">delete</th>
-            <td> <button (click)="onDeleteClick(car.id)"> Delete</button></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
