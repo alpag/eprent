@@ -6,6 +6,6 @@ td{
     /* display: flex;
     flex-direction: row;
     align-content: center; */
-    max-height: 100px;
+    width: 100px;
     height: 100px;
 }
