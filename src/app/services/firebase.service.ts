@@ -10,6 +10,8 @@ import { Car } from '../../classes/Car';
 })
 export class FirebaseService {
 
+  private headers= new HttpHeaders({'Access-Control-Allow-Origin' : '*'});
+
   constructor(private http: HttpClient) { }
 
   getCarList() {
@@ -24,8 +26,24 @@ export class FirebaseService {
     this.http.post(FIREBASE_BASE_URL + 'customers.json', customer).toPromise();
   }
 
+  updateCustomer(customer: Customer, hash : String){
+    this.http.put(FIREBASE_BASE_URL + 'customers/' + hash + '.json', customer).toPromise();
+  }
+
+  deleteCustomer(hash : String){
+    this.http.delete(FIREBASE_BASE_URL+ 'customers/' + hash + '.json').toPromise();
+  }
+
   addCar(car: Car) {
     this.http.post(FIREBASE_BASE_URL + 'cars.json', car).toPromise();
+  }
+
+  updateCar(car: Car, hash : String){
+    this.http.put(FIREBASE_BASE_URL + 'cars/' + hash + '.json', car).toPromise();
+  }
+
+  deleteCar(hash : String){
+    this.http.delete(FIREBASE_BASE_URL+ 'cars/' + hash + '.json').toPromise();
   }
 
   // addCar(heroID: number) {

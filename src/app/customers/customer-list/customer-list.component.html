@@ -19,11 +19,9 @@
         <th scope="row">{{customer.email}}</th>
         <th scope="row">{{customer.phone}}</th>
         <th scope="row">
-          <button class="btn btn-info">Edytuj</button>
-          <button class="btn btn-danger">Usuń</button>
+          <button class="btn btn-info"  [routerLink]="['/customers/edit-customer', customer.id]">Edytuj</button>
+          <button class="btn btn-danger" (click)="onDeleteClick(customer.id)">Usuń</button>
         </th>
-
-        
       </tr>
     </tbody>
-  </table>
+</table>
