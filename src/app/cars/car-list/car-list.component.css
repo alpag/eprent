@@ -2,7 +2,10 @@
     display:block; width:auto; height:100%;
 }
 
-tr{
+td{
+    /* display: flex;
+    flex-direction: row;
+    align-content: center; */
     max-height: 100px;
     height: 100px;
 }
