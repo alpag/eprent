@@ -17,7 +17,7 @@ export class AddCustomerComponent implements OnInit {
   
   customer: Customer;
   constructor(private firebase: FirebaseService) { 
-    this.customer = new Customer(this.targetId);
+    this.customer = new Customer();
   }
 
   ngOnInit() {
@@ -39,7 +39,6 @@ export class AddCustomerComponent implements OnInit {
     this.customer.setId(this.targetId.toString())
     console.log(this.customer);
     this.firebase.addCustomer(this.customer);
-    location.href = 'customers';
 
   }
 

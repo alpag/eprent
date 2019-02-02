@@ -6,8 +6,7 @@ export class Customer {
     email: String;
     phone: String;
   
-    constructor(id) {
-        this.id = id;
+    constructor() {
         this.name = "";
         this.lastname = "";
         this.email = "";
