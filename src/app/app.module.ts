@@ -15,6 +15,7 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
 import { AddCarComponent } from './cars/add-car/add-car.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 
  
 @NgModule({
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     CarListComponent,
     CustomerListComponent,
     AddCarComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    EditCustomerComponent
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,14 @@
             <th scope="col">Telefon</th>
             <td>{{customer.phone}}</td>
           </tr>
+          <tr>
+            <th scope="col">edit</th>
+            <td> <a class="nav-item nav-link" [routerLink]="['/customers/edit-customer', customer.id]">Edit</a> </td>
+          </tr>
+          <tr>
+            <th scope="col">delete</th>
+            <td> <button (click)="onDeleteClick(customer.id)"> Delete</button></td>
+          </tr>
         </table>
       </div>
     </div>
