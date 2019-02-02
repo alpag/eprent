@@ -38,6 +38,14 @@ export class FirebaseService {
     this.http.post(FIREBASE_BASE_URL + 'cars.json', car).toPromise();
   }
 
+  updateCar(car: Car, hash : String){
+    this.http.put(FIREBASE_BASE_URL + 'cars/' + hash + '.json', car).toPromise();
+  }
+
+  deleteCar(hash : String){
+    this.http.delete(FIREBASE_BASE_URL+ 'cars/' + hash + '.json').toPromise();
+  }
+
   // addCar(heroID: number) {
   //   this.http.post(FIREBASE_BASE_URL + 'favourites/heroes.json', {id: heroID}).toPromise();
   // }

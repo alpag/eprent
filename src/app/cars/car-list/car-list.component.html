@@ -23,6 +23,15 @@
             <th scope="col">Kolor</th>
             <td>{{car.color}}</td>
           </tr>
+
+          <tr>
+            <th scope="col">edit</th>
+            <td> <a class="nav-item nav-link" [routerLink]="['/cars/edit-car', car.id]">Edit</a> </td>
+          </tr>
+          <tr>
+            <th scope="col">delete</th>
+            <td> <button (click)="onDeleteClick(car.id)"> Delete</button></td>
+          </tr>
         </table>
       </div>
     </div>
