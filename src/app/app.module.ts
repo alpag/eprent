@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
  
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -17,6 +17,17 @@ import { AddCustomerComponent } from './customers/add-customer/add-customer.comp
 import { HttpClientModule } from '@angular/common/http';
 import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 import { EditCarComponent } from './cars/edit-car/edit-car.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatPaginatorModule,
+        MatPaginatorIntl,
+        MatSortModule,
+        MatFormFieldModule,
+        MatInputModule
+} from '@angular/material';
+import { MatPaginatorIntlPl } from './customers/customer-list/customer-paginator';
+import 'hammerjs';
 
  
 @NgModule({
@@ -33,13 +44,16 @@ import { EditCarComponent } from './cars/edit-car/edit-car.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AppRoutingModule, // for database
-    HttpClientModule
+    HttpClientModule, BrowserAnimationsModule,
+    MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatExpansionModule
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPl}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

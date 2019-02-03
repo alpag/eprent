@@ -1,0 +1,16 @@
+table{
+    width: 100%;
+}
+
+.filter{
+    display: block;
+}
+
+.header {
+    padding: 5px;
+  }
+
+.filters{
+    display: flex;
+    flex-direction: row;
+}

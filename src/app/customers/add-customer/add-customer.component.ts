@@ -6,6 +6,8 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 
 
+
+
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
