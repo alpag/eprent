@@ -17,7 +17,8 @@ import { AddCarComponent } from './cars/add-car/add-car.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesComponent } from './messages/messages.component';
-
+import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
+import { EditCarComponent } from './cars/edit-car/edit-car.component';
 
  
 @NgModule({
@@ -29,7 +30,9 @@ import { MessagesComponent } from './messages/messages.component';
     CustomerListComponent,
     AddCarComponent,
     AddCustomerComponent,
-    MessagesComponent
+    MessagesComponent,
+    EditCustomerComponent,
+    EditCarComponent
   ],
   imports: [
     BrowserModule,

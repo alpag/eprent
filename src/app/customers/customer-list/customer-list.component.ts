@@ -25,6 +25,26 @@ export class CustomerListComponent implements OnInit {
   constructor(private firebase: FirebaseService) {
     this.customers=[];
   }
- 
+  
+  onDeleteClick(id_to_delete){
+    
+    this.firebase.getCustomerList().subscribe((response: any)=>{
+      Object.entries(response).forEach((element: any) => {
+        if(element[1].id == id_to_delete){
+          const hash = element[0];
+          this.firebase.deleteCustomer(element[0]);
+          let tempcustomer;
+          this.customers.forEach((customer: any)=>{
+            if(customer.id == element[1].id){
+              tempcustomer = customer;
+            }
+          });
+          let index = this.customers.indexOf(tempcustomer);
+          this.customers.splice(index, 1);
+        }
+      });
+    });
+  }
+
 
 }

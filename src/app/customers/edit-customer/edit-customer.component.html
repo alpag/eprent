@@ -1,6 +1,10 @@
 <div style="width: 300px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
+      <label for="item-id">Id</label> <input type="text"
+        class="form-control" placeholder="Id" id="item-id"
+        required [(ngModel)]="customer.id" name="item-id">
+
       <label for="item-name">Imie</label> <input type="text"
         class="form-control" placeholder="Imie" id="item-name"
         required [(ngModel)]="customer.name" name="item-name">
@@ -16,10 +20,11 @@
       <label for="item-phone">Telefon</label> <input type="text"
         class="form-control" placeholder="Telefon" id="item-phone"
         required [(ngModel)]="customer.phone" name="item-phone">
+
     </div>
 
     <div class="btn-group">
-        <button type="submit" class="btn btn-success">Submit</button>
-      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
   </form>
 </div>

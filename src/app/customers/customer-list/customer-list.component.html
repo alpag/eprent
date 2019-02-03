@@ -1,34 +1,27 @@
 <h2>Lista Użytkowników</h2>
+<table class="table" id="customer-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Imię</th>
+        <th scope="col">Nazwisko</th>
+        <th scope="col">Mail</th>
+        <th scope="col">Tel</th>
+        <th scope="col">Opcje</th>
 
-
-
-<div class="col-md-3">
-  <div *ngFor="let customer of customers">
-    <div class="col">
-      <div class="row">
-        <table class="table">
-          <tr>
-            <th scope="col">Id</th>
-            <td>{{customer.id}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Imie</th>
-            <td>{{customer.name}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Nazwisko</th>
-            <td>{{customer.lastname}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Enail</th>
-            <td>{{customer.email}}</td>
-          </tr>
-          <tr>
-            <th scope="col">Telefon</th>
-            <td>{{customer.phone}}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers ">
+        <th scope="row">{{customer.id}}</th>
+        <th scope="row">{{customer.name}}</th>
+        <th scope="row">{{customer.lastname}}</th>
+        <th scope="row">{{customer.email}}</th>
+        <th scope="row">{{customer.phone}}</th>
+        <th scope="row">
+          <button class="btn btn-info"  [routerLink]="['/customers/edit-customer', customer.id]">Edytuj</button>
+          <button class="btn btn-danger" (click)="onDeleteClick(customer.id)">Usuń</button>
+        </th>
+      </tr>
+    </tbody>
+</table>

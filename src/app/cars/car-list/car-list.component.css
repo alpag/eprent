@@ -1,0 +1,11 @@
+#car-table img{
+    display:block; width:auto; height:100%;
+}
+
+td{
+    /* display: flex;
+    flex-direction: row;
+    align-content: center; */
+    width: 100px;
+    height: 100px;
+}

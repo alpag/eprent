@@ -7,10 +7,13 @@ export class Customer {
     phone: String;
   
     constructor() {
-        this.id = "";
         this.name = "";
         this.lastname = "";
         this.email = "";
         this.phone = "";
+    }
+
+    setId (id:String) {
+        this.id = id;
     }
   }
