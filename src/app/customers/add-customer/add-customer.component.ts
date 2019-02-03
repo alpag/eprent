@@ -12,10 +12,10 @@ import { Variable } from '@angular/compiler/src/render3/r3_ast';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-  customers : Array<Customer>;
-  targetId : Number;
-  
   customer: Customer;
+  customers : Array<Customer>;
+  targetId : number;
+  
   constructor(private firebase: FirebaseService) { 
     this.customer = new Customer();
   }
@@ -26,18 +26,18 @@ export class AddCustomerComponent implements OnInit {
       Object.entries(response).forEach((element: any) => {
         this.customers.push(element[1]);
       });
-      
+      if(this.customers != null){
+        this.targetId = Number(this.customers[this.customers.length-1].id)+1;
+      }
+      else
+        this.targetId = 0;
     });
   }
 
   onSubmit() {
-    if(this.customers != null){
-      this.targetId = this.customers.length;
-    }
-    else
-      this.targetId = 0;
+    
     this.customer.setId(this.targetId.toString())
-    console.log(this.customer);
+    this.targetId++;
     this.firebase.addCustomer(this.customer);
 
   }

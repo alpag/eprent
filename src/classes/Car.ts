@@ -15,4 +15,8 @@ export class Car {
         this.production = '';
         this.photoUrl = '';
     }
+
+    setId(id){
+        this.id = id;
+    }
   }
