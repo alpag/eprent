@@ -1,11 +1,21 @@
-#car-table img{
-    display:block; width:auto; height:100%;
+table{
+    width: 100%;
 }
 
-td{
-    /* display: flex;
+.filter{
+    display: block;
+}
+
+.header {
+    padding: 5px;
+  }
+
+.filters{
+    display: flex;
     flex-direction: row;
-    align-content: center; */
-    width: 100px;
+}
+
+img{
     height: 100px;
+    width: auto;
 }

@@ -1,24 +1,71 @@
-<h2>Lista pojazdów</h2>
-<table class="table" id="car-table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">#</th>
-      <th scope="col">Marka</th>
-      <th scope="col">Model</th>
-      <th scope="col">Kolor</th>
-      <th scope="col">Rok produkcji</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let car of cars ">
-      <td><img src="{{car.photoUrl}}"/></td>
-      <td scope="row">{{car.id}}</td>
-      <td scope="row">{{car.make}}</td>
-      <td scope="row">{{car.model}}</td>
-      <td scope="row">{{car.color}}</td>
-      <td scope="row">{{car.production}}</td>
-    </tr>
-  </tbody>
-</table>
+<h2>Pojazdy</h2>
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filtruj
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <section class="filters">
+      <mat-form-field class="filter" floatLabel="never">
+        <mat-label>ID</mat-label>
+        <input matInput [formControl]="idFilter">
+      </mat-form-field>
+      <mat-form-field class="filter" floatLabel="never">
+        <mat-label>Marka</mat-label>
+        <input matInput [formControl]="makeFilter">
+      </mat-form-field>
+      <mat-form-field class="filter" floatLabel="never">
+        <mat-label>Model</mat-label>
+        <input matInput [formControl]="modelFilter">
+      </mat-form-field>
+      <mat-form-field class="filter" floatLabel="never">
+        <mat-label>Kolor</mat-label>
+        <input matInput [formControl]="colorFilter">
+      </mat-form-field><mat-form-field class="filter" floatLabel="never">
+        <mat-label>Rok produkcji</mat-label>
+        <input matInput [formControl]="productionFilter">
+      </mat-form-field>
+    </section>
+  </mat-expansion-panel>
 
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="photoUrl">
+        <th mat-header-cell *matHeaderCellDef>
+          
+        </th>  
+        <td mat-cell *matCellDef="let car"> <img src="{{car.photoUrl}}"/></td>
+      </ng-container>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      #
+    </th>  
+    <td mat-cell *matCellDef="let car"> {{car.id}}</td>
+  </ng-container>
+  <ng-container matColumnDef="make">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Marka
+    </th>
+    <td mat-cell *matCellDef="let car"> {{car.make}}</td>
+  </ng-container>
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Model
+    </th>
+    <td mat-cell *matCellDef="let car"> {{car.model}}</td>
+  </ng-container>
+  <ng-container matColumnDef="color">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Kolor
+    </th>
+    <td mat-cell *matCellDef="let car"> {{car.color}}</td>
+  </ng-container>
+  <ng-container matColumnDef="production">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Rok produkcji
+    </th>
+    <td mat-cell *matCellDef="let car"> {{car.production}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let car; columns: columnsToDisplay"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50]"></mat-paginator>
