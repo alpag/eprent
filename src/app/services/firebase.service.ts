@@ -3,7 +3,8 @@ import { FIREBASE_BASE_URL } from './../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Customer } from '../../classes/Customer';
 import { Car } from '../../classes/Car';
-
+import { Reservation } from '../../classes/Reservation';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class FirebaseService {
 
   addCar(car: Car) {
     this.http.post(FIREBASE_BASE_URL + 'cars.json', car).toPromise();
+  }
+
+  addReservation(reservation: Reservation) {
+    return this.http.post(FIREBASE_BASE_URL + 'reservations.json', reservation).toPromise();
   }
 
   // addCar(heroID: number) {
