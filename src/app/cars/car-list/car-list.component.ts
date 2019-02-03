@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
 export class CarListComponent implements OnInit {
   cars : Car[];
   dataSource: MatTableDataSource<Car>;
-  columnsToDisplay = ['photoUrl', 'id', 'make', 'model', 'color', 'production'];
+  columnsToDisplay = ['photoUrl', 'id', 'make', 'model', 'color', 'production', 'price'];
   @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -21,12 +21,15 @@ export class CarListComponent implements OnInit {
   modelFilter = new FormControl('');
   colorFilter = new FormControl('');
   productionFilter = new FormControl('');
+  priceFilter = new FormControl('');
+
   filterValues = {
     id: '',
     make: '',
     model: '',
     color: '',
-    production: ''
+    production: '',
+    price: ''
   }
 
   ngOnInit() {
@@ -75,6 +78,13 @@ export class CarListComponent implements OnInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
         }
       )
+      this.priceFilter.valueChanges
+      .subscribe(
+        price => {
+          this.filterValues.price = price;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
   }
 
   createFilter(): (data: any, filter: string) => boolean {
@@ -84,7 +94,9 @@ export class CarListComponent implements OnInit {
         && data.make.indexOf(searchTerms.make) !== -1
         && data.model.indexOf(searchTerms.model) !== -1
         && data.color.toLowerCase().indexOf(searchTerms.color) !== -1
-        && data.production.toLowerCase().indexOf(searchTerms.production) !== -1;
+        && data.production.toLowerCase().indexOf(searchTerms.production) !== -1
+        && data.price.toLowerCase().indexOf(searchTerms.price) !== -1;
+
     }
     return filterFunction;
   }

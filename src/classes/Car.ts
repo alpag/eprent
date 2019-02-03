@@ -6,6 +6,7 @@ export class Car {
     color: String;
     production: String;
     photoUrl: String;
+    price: String;
   
     constructor() {
         this.id = '';
@@ -14,6 +15,7 @@ export class Car {
         this.color = '';
         this.production = '';
         this.photoUrl = '';
+        this.price = '';
     }
 
     setId(id){

@@ -21,10 +21,15 @@
       <mat-form-field class="filter" floatLabel="never">
         <mat-label>Kolor</mat-label>
         <input matInput [formControl]="colorFilter">
-      </mat-form-field><mat-form-field class="filter" floatLabel="never">
+      </mat-form-field>
+      <mat-form-field class="filter" floatLabel="never">
         <mat-label>Rok produkcji</mat-label>
         <input matInput [formControl]="productionFilter">
       </mat-form-field>
+    <mat-form-field class="filter" floatLabel="never">
+      <mat-label>Cena za dzień</mat-label>
+      <input matInput [formControl]="priceFilter">
+    </mat-form-field>
     </section>
   </mat-expansion-panel>
 
@@ -64,6 +69,12 @@
       Rok produkcji
     </th>
     <td mat-cell *matCellDef="let car"> {{car.production}}</td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Cena za dzień
+    </th>
+    <td mat-cell *matCellDef="let car"> {{car.price}} PLN</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let car; columns: columnsToDisplay"></tr>
