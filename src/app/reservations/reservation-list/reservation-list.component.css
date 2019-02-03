@@ -1,0 +1,15 @@
+.mat-column-id {
+    flex: 1;
+}
+
+.mat-column-startDate, .mat-column-endDate {
+    flex: 3;
+}
+
+.mat-column-customer {
+    flex: 4;
+}
+
+.mat-column-car {
+    flex: 3;
+}

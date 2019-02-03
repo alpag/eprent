@@ -23,6 +23,10 @@ export class FirebaseService {
     return this.http.get(FIREBASE_BASE_URL + 'customers.json');
   }
 
+  getReservationList() {
+    return this.http.get(FIREBASE_BASE_URL + 'reservations.json');
+  }
+
   addCustomer(customer: Customer) {
     this.http.post(FIREBASE_BASE_URL + 'customers.json', customer).toPromise();
   }
@@ -51,6 +55,9 @@ export class FirebaseService {
     this.http.delete(FIREBASE_BASE_URL+ 'cars/' + hash + '.json').toPromise();
   }
 
+  deleteReservation(hash: String) {
+    this.http.delete(FIREBASE_BASE_URL + 'reservations/' + hash + '.json').toPromise();
+  }
   // addCar(heroID: number) {
   //   this.http.post(FIREBASE_BASE_URL + 'favourites/heroes.json', {id: heroID}).toPromise();
   // }

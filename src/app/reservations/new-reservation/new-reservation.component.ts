@@ -16,16 +16,19 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class NewReservationComponent implements OnInit {
   customers : Array<Customer>;
   cars: Array<Car>;
+  reservations: Array<Reservation>;
   messages: Array<String>;
   selectedCar: Car;
   selectedCustomer: Customer;
   reservation: Reservation;
+  targetId: number;
   
   
 
   constructor(private firebase: FirebaseService, private messageService: MessageService, private route: ActivatedRoute,
     private router: Router) {
     this.customers = [];
+    this.reservations = [];
     this.cars = [];
     this.messages = [];
     this.reservation = new Reservation();
@@ -43,11 +46,23 @@ export class NewReservationComponent implements OnInit {
         this.cars.push(element[1]);
       });
     });
+
+    this.firebase.getReservationList().subscribe((response: any)=>{
+      Object.entries(response).forEach((element: any) => {
+        this.reservations.push(element[1]);
+      });
+      if(this.reservations != null){
+        this.targetId = Number(this.reservations[this.reservations.length-1].id)+1;
+      }
+      else
+        this.targetId = 1;
+    });
   }
 
   onSubmit() {
     console.log(this.reservation);
     if(this.reservation.startDate && this.reservation.endDate && this.reservation.carId && this.reservation.customerId) {
+      this.reservation.id = (this.targetId++).toString();
       this.firebase.addReservation(this.reservation).then((data) => {
         this.messageService.add('Dodano rezerwację!');
         this.router.navigateByUrl('reservations');
