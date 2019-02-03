@@ -1,0 +1,6 @@
+<div *ngIf="messageService.messages.length" class="row">
+  <div class="col" (load)="messageService.clear()">
+    <!-- <h2>Messages</h2> -->
+    <div *ngFor='let message of messageService.messages'> {{message}} </div>
+  </div>
+</div>

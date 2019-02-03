@@ -1,3 +1,59 @@
-<p>
-  new-reservation works!
-</p>
+<div class="row mt-4">
+  <div class="col">
+    <h1>Stwórz nową rezerwację</h1>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col">
+    <div class="messages">
+      <div *ngFor="let message of messages">{{message}}</div>
+    </div>
+  </div>
+</div>
+<form (ngSubmit)="onSubmit()" class="mt-3">
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="inputStartDate" class="col-sm-2 col-form-label">Początek</label>
+        <div class="col-sm-6">
+          <input type="date" class="form-control" id="inputStartDate" required [(ngModel)]="reservation.startDate" name="startDate">
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="inputEndDate" class="col-sm-2 col-form-label">Koniec</label>
+        <div class="col-sm-6">
+          <input type="date" class="form-control" id="inputEndDate" required [(ngModel)]="reservation.endDate" name="endDate">
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group row">
+        <label for="inputCustomer" class="col-sm-2 col-form-label">Klient</label>
+        <div class="col-sm-6">
+          <select [(ngModel)]="selectedCustomer" name="customer" type="date" class="form-control" id="inputCustomer" required [(ngModel)]="reservation.customerId" name="customer">
+            <option *ngFor="let customer of customers" [ngValue]="customer.id">{{customer.name}} {{customer.lastname}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group row">
+          <label for="inputCar" class="col-sm-2 col-form-label">Samochód</label>
+          <div class="col-sm-6">
+            <select [(ngModel)]="selectedCar" name="car" type="date" class="form-control" id="inputCar" required [(ngModel)]="reservation.carId" name="car">
+              <option *ngFor="let car of cars" [ngValue]="car.id">{{car.make}} {{car.model}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Stwórz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
