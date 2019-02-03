@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Car } from '../../../classes/Car';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { FirebaseService } from '../../services/firebase.service';
-
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-car-list',
@@ -11,25 +10,89 @@ import { FirebaseService } from '../../services/firebase.service';
   styleUrls: ['./car-list.component.css']
 })
 export class CarListComponent implements OnInit {
-  cars : Array<Car>;
+  cars : Car[];
+  dataSource: MatTableDataSource<Car>;
+  columnsToDisplay = ['photoUrl', 'id', 'make', 'model', 'color', 'production'];
+  @ViewChild(MatPaginator) paginator : MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-
-
-  constructor(private firebase: FirebaseService) {
-    this.cars = []
+  idFilter = new FormControl('');
+  makeFilter = new FormControl('');
+  modelFilter = new FormControl('');
+  colorFilter = new FormControl('');
+  productionFilter = new FormControl('');
+  filterValues = {
+    id: '',
+    make: '',
+    model: '',
+    color: '',
+    production: ''
   }
 
-
   ngOnInit() {
-
     this.firebase.getCarList().subscribe((response: any)=>{
       Object.entries(response).forEach((element: any) => {
         this.cars.push(element[1]);
       });
+      this.dataSource = new MatTableDataSource(this.cars);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.dataSource.filterPredicate = this.createFilter();
     });
+
+    this.idFilter.valueChanges
+      .subscribe(
+        id => {
+          this.filterValues.id = id;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+      this.makeFilter.valueChanges
+      .subscribe(
+        make => {
+          this.filterValues.make = make;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+      this.modelFilter.valueChanges
+      .subscribe(
+        model => {
+          this.filterValues.model = model;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+      this.colorFilter.valueChanges
+      .subscribe(
+        color => {
+          this.filterValues.color = color;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+      this.productionFilter.valueChanges
+      .subscribe(
+        production => {
+          this.filterValues.production = production;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.id.indexOf(searchTerms.id) !== -1
+        && data.make.indexOf(searchTerms.make) !== -1
+        && data.model.indexOf(searchTerms.model) !== -1
+        && data.color.toLowerCase().indexOf(searchTerms.color) !== -1
+        && data.production.toLowerCase().indexOf(searchTerms.production) !== -1;
+    }
+    return filterFunction;
   }
   
 
+  constructor(private firebase: FirebaseService) {
+    this.cars = []
+  }
   onDeleteClick(id_to_delete){
     
     this.firebase.getCarList().subscribe((response: any)=>{
