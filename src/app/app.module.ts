@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
  
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -15,6 +16,7 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
 import { AddCarComponent } from './cars/add-car/add-car.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesComponent } from './messages/messages.component';
 import { EditCustomerComponent } from './customers/edit-customer/edit-customer.component';
 import { EditCarComponent } from './cars/edit-car/edit-car.component';
 
@@ -28,12 +30,14 @@ import { EditCarComponent } from './cars/edit-car/edit-car.component';
     CustomerListComponent,
     AddCarComponent,
     AddCustomerComponent,
+    MessagesComponent,
     EditCustomerComponent,
     EditCarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    NgSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AppRoutingModule, // for database
