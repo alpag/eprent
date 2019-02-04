@@ -36,15 +36,19 @@ export class NewReservationComponent implements OnInit {
 
   ngOnInit() {
     this.firebase.getCustomerList().subscribe((response: any)=>{
-      Object.entries(response).forEach((element: any) => {
-        this.customers.push(element[1]);
-      });
+      if(response) {
+        Object.entries(response).forEach((element: any) => {
+          this.customers.push(element[1]);
+        });
+      }
     });
 
     this.firebase.getCarList().subscribe((response: any) => {
-      Object.entries(response).forEach((element: any) => {
-        this.cars.push(element[1]);
-      });
+      if(response) {
+        Object.entries(response).forEach((element: any) => {
+          this.cars.push(element[1]);
+        });
+      }
     });
 
     this.firebase.getReservationList().subscribe((response: any)=>{
@@ -60,11 +64,9 @@ export class NewReservationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.reservation);
     if(this.reservation.startDate && this.reservation.endDate && this.reservation.carId && this.reservation.customerId) {
       this.reservation.id = (this.targetId++).toString();
       this.firebase.addReservation(this.reservation).then((data) => {
-        this.messageService.add('Dodano rezerwację!');
         this.router.navigateByUrl('reservations');
         this.reservation = new Reservation();
       });

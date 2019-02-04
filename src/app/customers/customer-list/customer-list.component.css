@@ -14,3 +14,7 @@ table{
     display: flex;
     flex-direction: row;
 }
+
+.btn-clickable{
+    cursor: pointer;
+}

@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReservationListComponent } from './reservations/reservation-list/reservation-list.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
-import { CarListComponent } from './cars/car-list/car-list.component';
-import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { CarListComponent, DeleteCarDialog } from './cars/car-list/car-list.component';
+import { CustomerListComponent, DeleteCustomerDialog } from './customers/customer-list/customer-list.component';
 import { AddCarComponent } from './cars/add-car/add-car.component';
 import { AddCustomerComponent } from './customers/add-customer/add-customer.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,9 +26,12 @@ import { MatPaginatorModule,
         MatPaginatorIntl,
         MatSortModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatDialogModule
 } from '@angular/material';
 import { MatPaginatorIntlPl } from './customers/customer-list/customer-paginator';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 import 'hammerjs';
 
  
@@ -43,7 +46,13 @@ import 'hammerjs';
     AddCustomerComponent,
     MessagesComponent,
     EditCustomerComponent,
-    EditCarComponent
+    EditCarComponent,
+    DeleteCustomerDialog,
+    DeleteCarDialog,
+  ],
+  entryComponents: [
+    DeleteCustomerDialog,
+    DeleteCarDialog
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,7 @@ import 'hammerjs';
     AngularFireDatabaseModule,
     AppRoutingModule, // for database
     HttpClientModule, BrowserAnimationsModule,
-    MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatExpansionModule
+    MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatIconModule, MatMenuModule, MatDialogModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPl}

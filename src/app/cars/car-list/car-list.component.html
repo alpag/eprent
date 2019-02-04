@@ -1,4 +1,5 @@
 <h2>Pojazdy</h2>
+<a routerLink="/cars/add-car" class="btn btn-success">Dodaj auto</a>
 <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -21,10 +22,15 @@
       <mat-form-field class="filter" floatLabel="never">
         <mat-label>Kolor</mat-label>
         <input matInput [formControl]="colorFilter">
-      </mat-form-field><mat-form-field class="filter" floatLabel="never">
+      </mat-form-field>
+      <mat-form-field class="filter" floatLabel="never">
         <mat-label>Rok produkcji</mat-label>
         <input matInput [formControl]="productionFilter">
       </mat-form-field>
+    <mat-form-field class="filter" floatLabel="never">
+      <mat-label>Cena za dzień</mat-label>
+      <input matInput [formControl]="priceFilter">
+    </mat-form-field>
     </section>
   </mat-expansion-panel>
 
@@ -65,7 +71,24 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let car"> {{car.production}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Cena za dzień
+    </mat-header-cell>
+    <mat-cell *matCellDef="let car"> {{car.price}} PLN</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let car">
+        <mat-icon [matMenuTriggerFor]="menu" class="btn-clickable" [matMenuTriggerData]="car">more_vert</mat-icon> <!--- TU NIE ŁAPIE CZYM JEST ROW.ID-->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openEdit(car.id)">Edytuj</button> <!-- A W OGÓLE ZAJEBISCIE TO JAKBY TUTAJ TO DZIAŁAŁO XD-->
+          <button mat-menu-item (click)="openDeleteDialog(car.id, car.make, car.model)">Usuń</button>
+        </mat-menu>
+        <!-- <mat-icon [matMenuTriggerFor]="menu" class="btn-clickable" >more_vert</mat-icon> -->
+      </mat-cell>
+    </ng-container>
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
   <mat-row *matRowDef="let car; columns: columnsToDisplay"></mat-row>
-</mat-table>
+  </mat-table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]"></mat-paginator>

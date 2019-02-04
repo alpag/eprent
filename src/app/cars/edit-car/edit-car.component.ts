@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Car } from './../../../classes/Car'
-import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { FirebaseService } from '../../services/firebase.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-edit-car',
@@ -19,8 +19,8 @@ export class EditCarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private firebase: FirebaseService
-    
+    private firebase: FirebaseService,
+    public router: Router
   ) {
     this.car = new Car();
 
@@ -32,16 +32,15 @@ export class EditCarComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.selectedId = Number.parseInt(params['id']);
    });
-    console.log(this.selectedId + " <-to jest przekazane id");
-
     this.firebase.getCarList().subscribe((response: any)=>{
-      Object.entries(response).forEach((element: any) => {
-        if(element[1].id == this.selectedId){
-          this.car = element[1];
-          this.hash = element[0];
-          console.log(this.hash);
-        }
-      });
+      if(response) {
+        Object.entries(response).forEach((element: any) => {
+          if(element[1].id == this.selectedId){
+            this.car = element[1];
+            this.hash = element[0];
+          }
+        });
+      }
     });
 
   }
@@ -51,6 +50,7 @@ export class EditCarComponent implements OnInit {
 
     this.firebase.updateCar(this.car, this.hash);
     this.car = new Car();
+    this.router.navigateByUrl('cars');
     //redirect
   }
 
