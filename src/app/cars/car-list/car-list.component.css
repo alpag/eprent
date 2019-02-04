@@ -19,3 +19,20 @@ img{
     height: 100px;
     width: auto;
 }
+
+.mat-column-photoUrl {
+    flex: 2;
+}
+.mat-column-id { 
+    flex: 1;
+}
+.mat-column-make, .mat-column-model {
+    flex: 2;
+}
+.mat-column-color { 
+    flex: 2;
+}
+
+.btn-clickable{
+    cursor: pointer;
+}

@@ -132,7 +132,7 @@ export class CustomerListComponent implements OnInit {
 
   openDeleteDialog(id: String, _name: String, _lastname: String): void {
     const dialogRef = this.deleteDialog.open(DeleteCustomerDialog, {
-      width: '250px',
+      width: '450px',
       data: {name: _name, lastname: _lastname}
     });
 

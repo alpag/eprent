@@ -104,7 +104,7 @@ export class CarListComponent implements OnInit {
         && data.model.indexOf(searchTerms.model) !== -1
         && data.color.toLowerCase().indexOf(searchTerms.color) !== -1
         && data.production.toLowerCase().indexOf(searchTerms.production) !== -1
-        && data.price.toLowerCase().indexOf(searchTerms.price) !== -1;
+        && ("" + data.price).toLowerCase().indexOf(searchTerms.price) !== -1;
 
     }
     return filterFunction;
