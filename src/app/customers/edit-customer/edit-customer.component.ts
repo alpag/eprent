@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from './../../../classes/Customer'
-import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { FirebaseService } from '../../services/firebase.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 
@@ -21,7 +21,8 @@ export class EditCustomerComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private firebase: FirebaseService
+    private firebase: FirebaseService,
+    private router: Router,
     
   ) {
     this.customer = new Customer();
@@ -33,16 +34,16 @@ export class EditCustomerComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.selectedId = Number.parseInt(params['id']);
    });
-    console.log(this.selectedId + " plus kkkkk");
 
     this.firebase.getCustomerList().subscribe((response: any)=>{
-      Object.entries(response).forEach((element: any) => {
-        if(element[1].id == this.selectedId){
-          this.customer = element[1];
-          this.hash = element[0];
-          console.log(this.hash);
-        }
-      });
+      if(response) {
+        Object.entries(response).forEach((element: any) => {
+          if(element[1].id == this.selectedId){
+            this.customer = element[1];
+            this.hash = element[0];
+          }
+        });
+      }
     });
     
   }
@@ -52,6 +53,7 @@ export class EditCustomerComponent implements OnInit {
 
     this.firebase.updateCustomer(this.customer, this.hash);
     this.customer = new Customer();
+    this.router.navigateByUrl('customers');
     //redirect
   }
 

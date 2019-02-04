@@ -33,23 +33,25 @@ export class NewReservationComponent implements OnInit {
 
   ngOnInit() {
     this.firebase.getCustomerList().subscribe((response: any)=>{
-      Object.entries(response).forEach((element: any) => {
-        this.customers.push(element[1]);
-      });
+      if(response) {
+        Object.entries(response).forEach((element: any) => {
+          this.customers.push(element[1]);
+        });
+      }
     });
 
     this.firebase.getCarList().subscribe((response: any) => {
-      Object.entries(response).forEach((element: any) => {
-        this.cars.push(element[1]);
-      });
+      if(response) {
+        Object.entries(response).forEach((element: any) => {
+          this.cars.push(element[1]);
+        });
+      }
     });
   }
 
   onSubmit() {
-    console.log(this.reservation);
     if(this.reservation.startDate && this.reservation.endDate && this.reservation.carId && this.reservation.customerId) {
       this.firebase.addReservation(this.reservation).then((data) => {
-        this.messageService.add('Dodano rezerwację!');
         this.router.navigateByUrl('reservations');
         this.reservation = new Reservation();
       });

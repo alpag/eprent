@@ -1,4 +1,5 @@
 <h2>Pojazdy</h2>
+<a routerLink="/cars/add-car" class="btn btn-success">Dodaj auto</a>
 <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -76,6 +77,17 @@
     </th>
     <td mat-cell *matCellDef="let car"> {{car.price}} PLN</td>
   </ng-container>
+  <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let car">
+        <mat-icon [matMenuTriggerFor]="menu" class="btn-clickable" [matMenuTriggerData]="car">more_vert</mat-icon> <!--- TU NIE ŁAPIE CZYM JEST ROW.ID-->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openEdit(car.id)">Edytuj</button> <!-- A W OGÓLE ZAJEBISCIE TO JAKBY TUTAJ TO DZIAŁAŁO XD-->
+          <button mat-menu-item (click)="openDeleteDialog(car.id, car.make, car.model)">Usuń</button>
+        </mat-menu>
+        <!-- <mat-icon [matMenuTriggerFor]="menu" class="btn-clickable" >more_vert</mat-icon> -->
+      </td>
+    </ng-container>
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let car; columns: columnsToDisplay"></tr>
 </table>
